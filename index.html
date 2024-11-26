@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío Web</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="welcomeSection">
+            <h1>¡Bienvenidos a este Desafío Web!</h1>
+            <div class="character-guide">
+                <img src="images/character.png" alt="Personaje guía" id="characterAnimation">
+                <p>¡Bienvenidos a nuestro Desafío Web Interactivo!</p>
+                <ol>
+                    <li><strong>Selecciona tu Avatar e Ingresa tu Nombre.</strong></li>
+                    <li><strong>Responde a las Preguntas:</strong>
+                        <ul>
+                            <li>Encuentra preguntas sobre la estructura web y HTML.</li>
+                            <li>Recibe retroalimentación para cada respuesta.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Ordena los Elementos HTML:</strong>
+                        <ul>
+                            <li>Arrastra y suelta en el orden correcto.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Crea tu Página Web:</strong>
+                        <ul>
+                            <li>Escribe el código HTML básico.</li>
+                        </ul>
+                    </li>
+                </ol>
+                <p>¡Buena suerte y disfruta el desafío!</p>
+            </div>
+            <button id="startWelcomeButton">Comenzar</button>
+        </div>
+
+        <div id="userSection" style="display:none;">
+            <h2>Selecciona tu Avatar e Ingresa tu Nombre</h2>
+            <div id="userForms">
+                <div class="user-form">
+                    <div class="avatar-selection">
+                        <img src="images/avatars/avatar1.png" class="avatar" data-avatar="avatar1">
+                        <img src="images/avatars/avatar2.png" class="avatar" data-avatar="avatar2">
+                        <img src="images/avatars/avatar3.png" class="avatar" data-avatar="avatar3">
+                        <img src="images/avatars/avatar4.png" class="avatar" data-avatar="avatar4">
+                        <img src="images/avatars/avatar5.png" class="avatar" data-avatar="avatar5">
+                        <img src="images/avatars/avatar6.png" class="avatar" data-avatar="avatar6">
+                    </div>
+                    <input type="text" id="userName" placeholder="Tu nombre">
+                </div>
+            </div>
+            <button id="previewButton" style="display:none;">¡Listo!</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
