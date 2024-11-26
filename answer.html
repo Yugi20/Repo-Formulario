@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respuesta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="answer-container">
+        <img src="images/guide2.png" alt="Guía" class="guide-img-large">
+        <p id="answerFeedback"></p>
+        <button onclick="window.close()">Cerrar</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const feedbackType = params.get('feedback');
+            let feedbackMessage = '';
+
+            if (feedbackType === 'a') {
+                feedbackMessage = 'Incorrecto. Una página web es un documento que se encuentra en la World Wide Web, no en el escritorio de una computadora.';
+            } else if (feedbackType === 'c') {
+                feedbackMessage = 'Incorrecto. Aunque los editores de imágenes son importantes, no son páginas web.';
+            } else if (feedbackType === 'd') {
+                feedbackMessage = 'Incorrecto. La opción correcta es que una página web es un documento en la World Wide Web.';
+            }
+
+            document.getElementById('answerFeedback').textContent = feedbackMessage;
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafìo Web</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="user-info">
+            <img id="userAvatar" src="" alt="Avatar del usuario" class="avatar-large">
+            <div class="user-details">
+                <span id="userNameDisplay" class="large-text"></span>
+                <span id="userScore" class="large-text">Puntuación: 0</span>
+            </div>
+        </div>
+    </div>
+    <div class="quiz-container">
+        <h2>¿Qué es una página web?</h2>
+        <div class="guide-container">
+            <img id="guideImage" src="images/guide.png" alt="Guía" class="guide-img-medium">
+        </div>
+        <form id="quizForm">
+            <div class="option">
+                <input type="radio" id="option1" name="question" value="a">
+                <label for="option1">Un sistema operativo que gestiona los recursos de hardware de una computadora.</label>
+            </div>
+            <div class="option">
+                <input type="radio" id="option2" name="question" value="b">
+                <label for="option2">Es un documento electrónico que se muestra en un navegador web y que forma parte de la World Wide Web (WWW)</label>
+            </div>
+            <div class="option">
+                <input type="radio" id="option3" name="question" value="c">
+                <label for="option3">Un tipo de software para editar imágenes</label>
+            </div>
+            <div class="option">
+                <input type="radio" id="option4" name="question" value="d">
+                <label for="option4">Ninguna de las anteriores</label>
+            </div>
+            <input type="submit" value="Enviar" class="submit-button small-button">
+        </form>
+        <p id="feedback" style="display: none;"></p>
+        <dialog id="feedbackDialog">
+            <div class="answer-container">
+                <img id="feedbackImage" src="images/guide2.png" alt="Guía" class="guide-img-large">
+                <div class="dialog-bubble">
+                    <p id="feedbackMessage"></p>
+                </div>
+                <button id="closeDialogButton">Cerrar</button>
+            </div>
+        </dialog>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                document.getElementById('userAvatar').src = `images/avatars/${user.avatar}.png`;
+                document.getElementById('userNameDisplay').textContent = user.name;
+            } else {
+                alert('No se encontró información del usuario.');
+                window.location.href = 'index.html';
+            }
+
+            let score = 0;
+
+            document.getElementById('quizForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const selectedOption = document.querySelector('input[name="question"]:checked');
+                if (selectedOption) {
+                    let feedback = '';
+                    let feedbackImgSrc = 'images/guide2.png';
+                    if (selectedOption.value === 'a') {
+                        feedback = 'Incorrecto. Una página web es un documento que se encuentra en la World Wide Web, no en el escritorio de una computadora.';
+                    } else if (selectedOption.value === 'b') {
+                        feedback = '¡Correcto! Una página web es un documento electrónico en la WWW. ¡Bien hecho! Sigue explorando y aprendiendo.';
+                        score += 10; // Sumar 10 puntos
+                        document.getElementById('userScore').textContent = `Puntuación: ${score}`;
+                    } else if (selectedOption.value === 'c') {
+                        feedback = 'Incorrecto. Aunque los editores de imágenes son importantes, no son páginas web.';
+                    } else if (selectedOption.value === 'd') {
+                        feedback = 'Incorrecto. La opción correcta es que una página web es un documento en la World Wide Web.';
+                    }
+
+                    document.getElementById('feedbackMessage').textContent = feedback;
+                    document.getElementById('feedbackImage').src = feedbackImgSrc;
+                    if (feedback.indexOf('Correcto') === -1) {
+                        document.getElementById('feedbackDialog').showModal();
+                    } else {
+                        document.getElementById('feedback').textContent = feedback;
+                        document.getElementById('feedback').style.display = 'block';
+                    }
+                }
+            });
+
+            document.getElementById('closeDialogButton').addEventListener('click', () => {
+                document.getElementById('feedbackDialog').close();
+            });
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Previa del Avatar</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .avatar-preview {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+        }
+
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        #previewName {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        #startChallengeButton {
+            background-color: #ffeb3b; /* Color amarillo claro para el botón */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #startChallengeButton:hover {
+            background-color: #ffd700; /* Color amarillo más oscuro al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <img id="previewAvatar" class="avatar-preview" src="" alt="Avatar del usuario">
+        <h3 id="previewName"></h3>
+        <button id="startChallengeButton">Comenzar Desafío</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                document.getElementById('previewAvatar').src = `images/avatars/${user.avatar}.png`;
+                document.getElementById('previewName').textContent = user.name;
+            } else {
+                alert('No se encontró información del usuario.');
+                window.location.href = 'index.html';
+            }
+
+            document.getElementById('startChallengeButton').addEventListener('click', () => {
+                window.location.href = 'quiz.html';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
